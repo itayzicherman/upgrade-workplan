@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2b">
+  <title>תוכנית עבודה אישית | Upgrade</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap');
+    :root{--navy:#101b2b;--navy2:#19283c;--gold:#c8a45c;--gold-light:#ead7a6;--ink:#17243a;--muted:#69758a;--line:#e4e7ec;--paper:#fff;--wash:#f4f6f8;--green:#18856e}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e9edf2;color:var(--ink);font-family:'Heebo',Arial,sans-serif}
+    button,input{font:inherit}.shell{min-height:100vh;display:grid;grid-template-columns:350px minmax(0,1fr);max-width:1500px;margin:0 auto}
+    .editor{background:var(--navy);color:#fff;padding:32px 26px;position:sticky;top:0;height:100vh;overflow:auto}
+    .field-grid .field:last-child{grid-column:1/-1}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:34px}.brand-mark{width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(200,164,92,.65);border-radius:12px;color:var(--gold-light);font-size:18px;font-weight:800}.brand-name{font-weight:800;letter-spacing:.13em;font-size:15px}.brand-sub{font-size:11px;color:#aeb8c7;margin-top:2px}
+    .editor h1{font-size:23px;line-height:1.25;margin:0 0 8px}.editor-intro{font-size:13px;line-height:1.65;color:#b7c1cf;margin:0 0 26px}.field{margin:0 0 19px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:#f6f7f9}.field input,.field select{width:100%;min-height:46px;border:1px solid #3a4a60;border-radius:9px;background:#1a293c;color:#fff;padding:10px 12px;outline:0}.field input:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c8a45c24}.field select option{color:#111}.hint{font-size:11px;color:#9da9b9;margin-top:5px}
+    .action{width:100%;border:0;border-radius:10px;min-height:50px;margin-top:10px;background:linear-gradient(100deg,#c19b50,#e7cc85);color:#172033;font-weight:800;cursor:pointer;box-shadow:0 10px 24px #0003}.action:hover{filter:brightness(1.06);transform:translateY(-1px)}.editor-note{font-size:11px;line-height:1.6;color:#9da9b9;margin:16px 2px 0}
+    .workspace{padding:38px clamp(20px,4vw,64px);min-width:0}.workspace-head{max-width:920px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center;color:#536176;font-size:13px}.workspace-head strong{color:var(--ink)}.preview{max-width:920px;margin:0 auto;background:var(--paper);box-shadow:0 18px 55px #14243a16;border:1px solid #e5e8ed}
+    .doc-top{background:radial-gradient(ellipse at 14% 0%,#263954 0,transparent 45%),linear-gradient(130deg,#101b2b,#1a2a40);color:#fff;padding:38px clamp(24px,5vw,58px) 32px;position:relative;overflow:hidden;text-align:center}.doc-top:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #c8a45c3c;border-radius:50%;left:-96px;top:-148px;box-shadow:0 0 0 18px #c8a45c0a,0 0 0 42px #c8a45c08}.doc-top h2{font-size:clamp(27px,4vw,42px);line-height:1.15;margin:0 auto 7px;position:relative;z-index:1}.doc-subtitle{font-size:16px;color:#d6dde7;font-weight:300;margin:0;position:relative;z-index:1}.gold-rule{width:58px;height:3px;background:var(--gold);margin:20px auto 0;position:relative;z-index:1}
+    .student-panel{margin:-1px 0 0;background:#f6f4ef;border-bottom:1px solid #eee9dc;padding:22px clamp(24px,5vw,58px)}.student-heading{font-size:11px;font-weight:700;letter-spacing:.1em;color:#8b7547;margin-bottom:12px}.student-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}.student-cell{min-width:0}.student-cell span{display:block;color:#7c8797;font-size:10px;margin-bottom:3px}.student-cell strong{font-size:13px;font-weight:700;word-break:break-word}
+    .doc-content{padding:28px clamp(24px,5vw,58px) 42px}.section-title{display:flex;align-items:center;gap:10px;font-size:19px;margin:0 0 13px}.section-title:before{content:"";height:22px;width:3px;background:var(--gold);border-radius:4px}.guidance{background:#f7f8fa;border:1px solid var(--line);border-radius:12px;padding:17px 18px 12px;margin-bottom:24px}.guidance ol{margin:0;padding:0 20px 0 0}.guidance li{font-size:12px;line-height:1.65;padding:0 0 7px 4px;color:#4e5c70}.guidance li::marker{color:#ad8741;font-weight:800}
+    .month{padding:25px clamp(24px,5vw,58px) 35px;border-top:1px solid var(--line)}.month-head{display:flex;align-items:flex-start;justify-content:flex-start;margin-bottom:16px}.month-label{display:flex;align-items:flex-start;gap:11px;min-width:0}.month-number{width:34px;height:34px;display:grid;place-items:center;background:var(--navy);color:var(--gold-light);border-radius:10px;font-weight:800;font-size:13px;flex:none}.month h3{font-size:20px;line-height:1.35;margin:3px 0 0}.weeks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.week{border:1px solid var(--line);border-radius:10px;overflow:hidden;break-inside:avoid}.week h4{font-size:12px;margin:0;padding:8px 11px;background:#f4f5f7;color:#526074;border-bottom:1px solid var(--line)}.week ul{padding:8px 11px;margin:0;list-style:none}.week li{font-size:11px;line-height:1.5;padding:4px 0;border-bottom:1px dashed #edf0f3}.week li:last-child{border:0}.day{font-weight:700;color:#27364a}.meet{color:#806124;font-weight:700}.month-three{background:linear-gradient(110deg,#fcfaf5,#fff);min-height:0}.milestone{display:flex;align-items:flex-start;gap:15px;padding:20px;border:1px solid #e9dfc8;border-radius:13px;background:#fff;max-width:680px}.milestone-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#f5eddb;color:#987438;font-size:19px;flex:none}.milestone h4{margin:0 0 4px;font-size:16px}.milestone p{margin:0;color:#5b687b;font-size:13px;line-height:1.6}.doc-footer{border-top:1px solid var(--line);padding:14px clamp(24px,5vw,58px);font-size:10px;color:#8490a0;display:flex;justify-content:space-between;gap:12px}.doc-footer b{color:#a4854a;letter-spacing:.12em}
+    @media(max-width:900px){.shell{grid-template-columns:300px minmax(0,1fr)}.editor{padding:25px 20px}.student-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:700px){.shell{display:flex;flex-direction:column}.editor{position:relative;height:auto;overflow:visible;padding:24px 20px}.brand{margin-bottom:22px}.editor h1{font-size:21px}.editor-intro{margin-bottom:19px}.field{margin-bottom:14px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.workspace{padding:18px 10px 30px}.workspace-head{font-size:11px;padding:0 4px}.doc-top{padding:30px 22px 26px}.doc-top h2{font-size:29px}.doc-subtitle{font-size:13px}.student-panel,.doc-content,.month{padding-right:22px;padding-left:22px}.student-grid{gap:12px}.month-caption{display:none}.weeks{grid-template-columns:1fr}.doc-footer{padding:13px 22px}}
+    @media print{ @page{size:A4;margin:13mm 13mm 14mm}html,body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.shell{display:block;max-width:none;min-height:0}.editor,.workspace-head{display:none!important}.workspace{padding:0}.preview{max-width:none;border:0;box-shadow:none}.doc-top{padding:24px 30px 20px}.doc-top h2{font-size:30px}.student-panel{padding:14px 30px}.student-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px}.student-cell strong{font-size:11px}.doc-content{padding:18px 30px 20px}.section-title{font-size:16px}.guidance{padding:13px 15px 8px;margin-bottom:0}.guidance li{font-size:10px;line-height:1.5;padding-bottom:5px}.month{padding:16px 30px 20px;break-inside:avoid;page-break-inside:avoid}.month-head{margin-bottom:10px}.month h3{font-size:17px}.weeks{gap:7px}.week h4{font-size:10px;padding:6px 9px}.week ul{padding:6px 9px}.week li{font-size:9px;line-height:1.4;padding:3px 0}.month-three{min-height:0}.milestone{padding:12px}.doc-footer{padding:10px 30px}.student-panel,.doc-top,.week,.guidance,.milestone{break-inside:avoid;page-break-inside:avoid}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="editor" aria-label="פרטי התלמיד">
+      <div class="brand"><div class="brand-mark">U</div><div><div class="brand-name">UPGRADE</div><div class="brand-sub">מסלול נכסים דיגיטליים</div></div></div>
+      <h1>בונים תוכנית עבודה אישית</h1>
+      <p class="editor-intro">מלאו את נתוני התלמיד. הפרטים יתעדכנו במסמך שמימין וייכללו בקובץ ה־PDF.</p>
+      <form id="studentForm">
+        <div class="field"><label for="studentName">שם התלמיד</label><input id="studentName" name="studentName" autocomplete="name" placeholder="לדוגמה: ישראל ישראלי"></div>
+        <div class="field-grid">
+          <div class="field"><label for="dailyTime">זמן פנוי ממוצע ביום</label><select id="dailyTime" name="dailyTime" required><option value="" selected disabled>בחירה</option><option>30–60 דקות</option><option>60–120 דקות</option><option>120+ דקות</option></select></div>
+          <div class="field"><label for="techLevel">רקע טכנולוגי</label><select id="techLevel" name="techLevel" required><option value="" selected disabled>בחירה</option><option>לא מבין בכלל</option><option>רקע בסיסי</option><option>יש רקע טכנולוגי טוב</option></select></div>
+          <div class="field"><label for="availability">שעות זמינות</label><select id="availability" name="availability" required><option value="" selected disabled>בחירה</option><option>09:00–12:00</option><option>12:00–16:00</option><option>16:00–21:00</option><option>דינאמי</option></select></div>
+        </div>
+        <button class="action" type="submit">הפקת תוכנית כ־PDF <span aria-hidden="true">↓</span></button>
+      </form>
+      <p class="editor-note">המסמך נוצר בדפדפן שלך. בלחיצה ייפתח חלון הדפסה, שבו אפשר לבחור „שמירה כ־PDF”. הטופס עדיין לא שולח או שומר נתונים ב־CRM.</p>
+    </aside>
+    <section class="workspace">
+      <div class="workspace-head"><span><strong>תצוגה מקדימה</strong> · התוכנית האישית שלך</span><span>מסמך PDF · A4</span></div>
+      <article class="preview" id="document">
+        <header class="doc-top"><h2>תוכנית עבודה אישית</h2><p class="doc-subtitle">מסלול ההכשרה המלא של אפגרייד נכסים דיגיטליים</p><div class="gold-rule"></div></header>
+        <section class="student-panel"><div class="student-heading">נתונים אישיים מנחים</div><div class="student-grid">
+          <div class="student-cell"><span>שם הסטודנט</span><strong id="outName">טרם הוזן</strong></div>
+          <div class="student-cell"><span>זמן פנוי ביום</span><strong id="outTime">טרם נבחר</strong></div>
+          <div class="student-cell"><span>רקע טכנולוגי</span><strong id="outTech">טרם נבחר</strong></div>
+          <div class="student-cell"><span>שעות זמינות</span><strong id="outHours">טרם נבחר</strong></div>
+        </div></section>
+        <section class="doc-content"><h3 class="section-title">הנחיות חשובות</h3><div class="guidance"><ol>
+          <li>בתום כל שיעור תקבלו משימות אישיות לביצוע, כדי שתוכלו להתקדם לפגישה הבאה.</li>
+          <li>האחריות לקביעת הפגישה הבאה היא עליכם: עדכנו את המנטור שסיימתם את המשימות וקבעו את הפגישה הבאה.</li>
+          <li>ניתן ואף מומלץ להתייעץ עם המנטור ובקבוצת הקהילה אם עולות שאלות בנוגע למשימות. כולנו כאן כדי לעזור לכם להתקדם.</li>
+          <li>הטבלה היא דוגמה ללוח זמנים סטנדרטי. התוכנית מותאמת אישית ותלויה בקצב ההתקדמות, בביצוע המשימות, בלוח הזמנים שלכם ובמועדים הפנויים של המנטור.</li>
+          <li>אנחנו כאן לצידכם. המטרה שלנו היא הצלחתכם. לכל שאלה אפשר לפנות בקבוצת הקהילה, שבה תלמידים בשלבים שונים וכל הצוות המקצועי. המנטור האישי יענה בהקדם האפשרי.</li>
+        </ol></div></section>
+        <section class="month"><div class="month-head"><div class="month-label"><span class="month-number">01</span><h3>חודש ראשון: יסודות המקצוע ופתיחת החנות הראשונה!</h3></div></div><div class="weeks" id="monthOne"></div></section>
+        <section class="month"><div class="month-head"><div class="month-label"><span class="month-number">02</span><h3>חודש שני: פיתוח החנות (אופטימיזציה וייעול)</h3></div></div><div class="weeks" id="monthTwo"></div></section>
+        <section class="month month-three"><div class="month-head"><div class="month-label"><span class="month-number">03</span><h3>חודש שלישי: מכינים את התשתית לרשת חנויות</h3></div></div><div class="milestone"><div class="milestone-icon" aria-hidden="true">✦</div><div><h4>פגישה שישית</h4><p>פגישת הכנה לפתיחת חנות שנייה והמשך הנחיות לעבודה.</p></div></div></section>
+        <footer class="doc-footer"><span>תוכנית עבודה אישית · מסלול נכסים דיגיטליים</span><b>UPGRADE</b></footer>
+      </article>
+    </section>
+  </main>
+  <script>
+    const monthOneWeeks = [
+      [["יום ראשון","פגישה ראשונה – היכרות וחקר שוק מתקדם","meet"],["יום שני–חמישי","ביצוע משימות ומטלות",""]],
+      [["יום ראשון","פגישה שנייה – מכינים את המוצר הראשון","meet"],["יום שני–חמישי","ביצוע משימות ומטלות",""]],
+      [["יום ראשון","פגישה שלישית – פותחים את החנות שלך!","meet"],["יום שני–שלישי","ביצוע משימות ומטלות",""],["יום חמישי","פגישה רביעית – התדריך המקיף על החנות","meet"]],
+      [["יום ראשון","העלאת מוצר",""],["יום שני","חקר שוק",""],["יום שלישי","העלאת מוצר",""],["יום רביעי","חקר שוק",""],["יום חמישי","העלאת מוצר",""]]
+    ];
+    const monthTwoWeeks = [
+      [["יום ראשון","העלאת מוצר",""],["יום שני","חקר שוק",""],["יום שלישי","העלאת מוצר",""],["יום רביעי","אופטימיזציה",""],["יום חמישי","העלאת מוצר",""]],
+      [["יום ראשון","העלאת מוצר",""],["יום שני","אופטימיזציה (אופציונלי)",""],["יום שלישי","העלאת מוצר",""],["יום רביעי","אופטימיזציה",""],["יום חמישי","העלאת מוצר",""]],
+      [["יום ראשון","העלאת מוצר",""],["יום שני","אופטימיזציה",""],["יום שלישי","העלאת מוצר",""],["יום רביעי","אופטימיזציה",""],["יום חמישי","פגישה חמישית – פגישת מדדים! (סקירה מקיפה על החנות)","meet"]]
+    ];
+    function renderWeeks(targetId,weeks,startWeek){document.getElementById(targetId).innerHTML=weeks.map((week,i)=>`<div class="week"><h4>שבוע ${startWeek+i}</h4><ul>${week.map(([day,task,cls])=>`<li><span class="day">${day}:</span> <span class="${cls}">${task}</span></li>`).join("")}</ul></div>`).join("")}
+    renderWeeks("monthOne",monthOneWeeks,1);renderWeeks("monthTwo",monthTwoWeeks,5);
+    const pairs=[["studentName","outName","טרם הוזן"],["dailyTime","outTime","טרם נבחר"],["techLevel","outTech","טרם נבחר"],["availability","outHours","טרם נבחר"]];
+    pairs.forEach(([inputId,outId,empty])=>{const input=document.getElementById(inputId);input.addEventListener("input",()=>document.getElementById(outId).textContent=input.value.trim()||empty);input.addEventListener("change",()=>document.getElementById(outId).textContent=input.value||empty)});
+    document.getElementById("studentForm").addEventListener("submit",event=>{event.preventDefault();if(!event.currentTarget.reportValidity())return;window.print()});
+  </script>
+</body>
+</html>
