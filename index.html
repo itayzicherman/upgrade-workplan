@@ -23,13 +23,49 @@
     @media(max-width:900px){.shell{grid-template-columns:300px minmax(0,1fr)}.editor{padding:25px 20px}.student-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:700px){.shell{display:flex;flex-direction:column}.editor{position:relative;height:auto;overflow:visible;padding:24px 20px}.brand{margin-bottom:22px}.editor h1{font-size:21px}.editor-intro{margin-bottom:19px}.field{margin-bottom:14px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.workspace{padding:18px 10px 30px}.workspace-head{font-size:11px;padding:0 4px}.doc-top{padding:30px 22px 26px}.doc-top h2{font-size:29px}.doc-subtitle{font-size:13px}.student-panel,.doc-content,.month{padding-right:22px;padding-left:22px}.student-grid{gap:12px}.month-caption{display:none}.weeks{grid-template-columns:1fr}.doc-footer{padding:13px 22px}}
     @media print{ @page{size:A4;margin:13mm 13mm 14mm}html,body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.shell{display:block;max-width:none;min-height:0}.editor,.workspace-head{display:none!important}.workspace{padding:0}.preview{max-width:none;border:0;box-shadow:none}.doc-top{padding:24px 30px 20px}.doc-top h2{font-size:30px}.student-panel{padding:14px 30px}.student-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px}.student-cell strong{font-size:11px}.doc-content{padding:18px 30px 20px}.section-title{font-size:16px}.guidance{padding:13px 15px 8px;margin-bottom:0}.guidance li{font-size:10px;line-height:1.5;padding-bottom:5px}.month{padding:16px 30px 20px;break-inside:avoid;page-break-inside:avoid}.month-head{margin-bottom:10px}.month h3{font-size:17px}.weeks{gap:7px}.week h4{font-size:10px;padding:6px 9px}.week ul{padding:6px 9px}.week li{font-size:9px;line-height:1.4;padding:3px 0}.month-three{min-height:0}.milestone{padding:12px}.doc-footer{padding:10px 30px}.student-panel,.doc-top,.week,.guidance,.milestone{break-inside:avoid;page-break-inside:avoid}}
+    /* Upgrade accelerator visual system */
+    :root{--navy:#07172b;--navy2:#0b2340;--cyan:#13d7e8;--ink:#0b1a2b;--muted:#657589;--line:#dce5ed;--wash:#f5f8fb}
+    body{background:var(--wash)}
+    .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;min-height:0}
+    .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 78% 10%,#123554 0,transparent 34%),linear-gradient(110deg,#07172b,#0b2340 72%,#102c47);opacity:.98}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.7}
+    .nav{position:relative;z-index:1;max-width:1160px;height:76px;margin:auto;padding-inline:28px;display:flex;align-items:center;justify-content:flex-start}
+    .brand-logo{width:190px;height:66px;object-fit:contain;object-position:right center;border-radius:5px}
+    .hero-inner{position:relative;z-index:1;max-width:1160px;margin:auto;padding:8px 28px 44px}
+    .hero-kicker{display:block;color:#7aeaf1;font-size:12px;font-weight:800;letter-spacing:.14em;margin-bottom:8px}
+    .hero h1{font-size:clamp(32px,5vw,48px);line-height:1.12;max-width:730px;margin:0 0 10px;letter-spacing:-.035em}
+    .hero p{font-size:16px;line-height:1.65;color:#c6d5e2;max-width:640px;margin:0}
+    .shell{min-height:0;grid-template-columns:340px minmax(0,1fr);gap:18px;max-width:1160px;margin:-18px auto 0;padding:0 24px 56px;position:relative;z-index:2;align-items:start}
+    .editor{background:#fff;color:var(--ink);border:1px solid #e6edf3;border-radius:20px;box-shadow:0 18px 54px #102a4310;padding:26px 24px;position:sticky;top:16px;height:auto;max-height:calc(100vh - 32px);overflow:auto}
+    .brand{display:none}
+    .editor-title{font-size:22px;line-height:1.25;margin:0 0 7px;color:var(--ink)}
+    .editor-intro{font-size:13px;line-height:1.65;color:var(--muted);margin:0 0 22px}
+    .field{margin:0 0 16px}
+    .field label{color:#263d52;font-weight:700}
+    .field input,.field select{border:1px solid var(--line);background:#fbfcfd;color:var(--ink);border-radius:9px;padding:11px 13px}
+    .field input:focus,.field select:focus{border-color:#12bccc;box-shadow:0 0 0 3px #13d7e81a;background:#fff}
+    .field input::placeholder{color:#a8b3be}
+    .field select option{color:var(--ink)}
+    .hint{color:#8795a4}
+    .action{background:var(--cyan);color:#052235;box-shadow:0 8px 30px #13d7e838;transition:.2s}
+    .action:hover{filter:none;transform:translateY(-2px);box-shadow:0 12px 38px #13d7e85c}
+    .editor-note{color:#8795a4}
+    .workspace{padding:20px 0 0;min-width:0}
+    .workspace-head{max-width:920px;margin:0 auto 14px;color:#536176}
+    .preview{border-radius:18px;overflow:hidden;box-shadow:0 18px 54px #102a4310;border:1px solid #e6edf3}
+    @media(max-width:900px){.shell{grid-template-columns:300px minmax(0,1fr);gap:14px;padding-inline:18px}.editor{padding:24px 19px}}
+    @media(max-width:700px){.nav{height:64px;padding-inline:18px}.brand-logo{width:155px;height:52px}.hero-inner{padding:6px 22px 32px}.hero h1{font-size:clamp(30px,8vw,38px)}.hero p{font-size:15px}.shell{display:flex;flex-direction:column;gap:14px;margin-top:-16px;padding:0 14px 38px}.editor{position:relative;top:auto;max-height:none;height:auto;overflow:visible;width:100%;padding:22px 18px;border-radius:16px}.editor-title{font-size:21px}.editor-intro{margin-bottom:18px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.workspace{width:100%;padding:4px 0 0}.preview{border-radius:14px}.workspace-head{font-size:11px;padding:0 4px}.doc-top{padding:30px 22px 26px}.doc-top h2{font-size:29px}.doc-subtitle{font-size:13px}.student-panel,.doc-content,.month{padding-right:22px;padding-left:22px}.student-grid{gap:12px}.weeks{grid-template-columns:1fr}.doc-footer{padding:13px 22px}}
+    @media print{.hero{display:none!important}.shell{margin:0!important;padding:0!important;max-width:none!important;display:block!important}.editor,.workspace-head{display:none!important}.workspace{padding:0!important}.preview{max-width:none;border:0;border-radius:0;box-shadow:none;overflow:visible}}
   </style>
 </head>
 <body>
+  <header class="hero">
+    <nav class="nav"><img class="brand-logo" src="upgrade-logo-wide.jpg" alt="Upgrade — נכסים דיגיטליים"></nav>
+    <div class="hero-inner"><span class="hero-kicker">UPGRADE · תוכנית עבודה אישית</span><h1>בונים תוכנית עבודה אישית</h1><p>מלאו את נתוני התלמיד והפיקו תוכנית אישית מסודרת לשיתוף ולשמירה כ־PDF.</p></div>
+  </header>
   <main class="shell">
     <aside class="editor" aria-label="פרטי התלמיד">
-      <div class="brand"><div class="brand-mark">U</div><div><div class="brand-name">UPGRADE</div><div class="brand-sub">מסלול נכסים דיגיטליים</div></div></div>
-      <h1>בונים תוכנית עבודה אישית</h1>
+      <h2 class="editor-title">פרטי התלמיד</h2>
       <p class="editor-intro">מלאו את נתוני התלמיד. הפרטים יתעדכנו במסמך שמימין וייכללו בקובץ ה־PDF.</p>
       <form id="studentForm">
         <div class="field"><label for="studentName">שם התלמיד</label><input id="studentName" name="studentName" autocomplete="name" placeholder="לדוגמה: ישראל ישראלי"></div>
